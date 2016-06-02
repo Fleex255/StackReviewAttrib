@@ -1,1 +1,4 @@
 # StackReviewAttrib
+This pair of tools automatically creates a document with [appropriate attribution](https://blog.stackoverflow.com/2009/06/attribution-required/) for posts shown in Stack Exchange's `/review` screens. It was written to allow me ([Ben N](http://superuser.com/users/380318/ben-n?tab=topactivity)) to make YouTube videos of myself reviewing at Stack Exchange.
+
+The Chrome extension notifies an ASP.NET server running on `localhost` that a review page has been shown. The web server then downloads the page, extracts the necessary data, and adds it to the list. The extension must be loaded unpacked. The server must run on .NET 4.5.2 and listen on port 56037.

@@ -1,0 +1,22 @@
+{
+	"manifest_version": 2,
+
+	"name": "SE Review Attribution Generator",
+	"description": "Helps produce a list with attribution for reviewed Stack Exchange posts",
+	"version": "1.0",
+
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+	"permissions": [
+		"tabs",
+		"http://superuser.com/review/*",
+		"http://stackoverflow.com/review/*",
+		"http://*.stackexchange.com/review/*"
+	],
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	}
+}
