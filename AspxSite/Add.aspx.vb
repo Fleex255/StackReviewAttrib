@@ -29,10 +29,10 @@ Partial Class Add
                 End If
             ElseIf node.Attributes.Contains("class") Then
                 Dim classname = node.Attributes("class").Value
-                If classname = "question-link" OrElse classname = "question-hyperlink" Then
+                If classname = "question-link" OrElse classname.Contains("question-hyperlink") Then
                     titleQA = node.InnerText
                     linkQ = siteRoot & node.Attributes("href").Value
-                ElseIf classname = "answer-link" OrElse classname = "answer-hyperlink" Then ' For suggested edits
+                ElseIf classname = "answer-link" OrElse classname.Contains("answer-hyperlink") Then ' For suggested edits
                     titleQA = node.InnerText
                     linkA = siteRoot & node.Attributes("href").Value
                 ElseIf classname.Contains("user-info") And Not classname.Contains("-actions") Then
@@ -51,6 +51,11 @@ Partial Class Add
                     ElseIf uatNode.InnerHtml.Contains("proposed") Then
                         userlinkE = href
                         userE = name
+                    End If
+                ElseIf classname = "started" Then ' Suggested edits by anonymous users
+                    If node.InnerHtml.Contains("an anonymous user") Then
+                        userE = "an anonymous user"
+                        userlinkE = "#"
                     End If
                 End If
             End If

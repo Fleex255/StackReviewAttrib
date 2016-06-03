@@ -13,8 +13,9 @@ Public Class AttribDoc
         Dim fileTitle = "SEReview-" & Now.ToString("MM-dd-yyyy-HH-mm") & ".html"
         Stream = New IO.StreamWriter(IO.Path.Combine(HttpContext.Current.Server.MapPath("~\App_Data"), fileTitle), False)
         Stream.WriteLine("<html><head><title>Attribution for reviewing at Stack Exchange</title><meta charset=""UTF-8""></head>")
-        Stream.WriteLine("<body>Content in the accompanying work(s) originated in the Stack Exchange network.<br />")
+        Stream.WriteLine("<body>Content in the accompanying work(s) originated in the Stack Exchange network. Neither Stack Exchange nor the posters endorse the work accompanied by this document.<br />")
         Stream.WriteLine("This page gives <a href=""http://blog.stackoverflow.com/2009/06/attribution-required/"">appropriate attribution</a> for each post shown.<br />")
+        Stream.WriteLine("The code for the program that generated this page is <a href=""https://github.com/Fleex255/StackReviewAttrib"">available on GitHub</a>.<br /><br />")
         Stream.Write("Attribution recording session started at ")
         Stream.Write(Now.ToString)
         Stream.WriteLine(".<br />")
