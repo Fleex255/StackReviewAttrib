@@ -2,14 +2,18 @@
 Partial Class Add
     Inherits System.Web.UI.Page
     Private Sub PageLoad(sender As Object, e As EventArgs) Handles Me.Load
+        Response.AppendHeader("Access-Control-Allow-Origin", "*")
         If Not AttribDoc.IsStarted Then Exit Sub
         ' Get the page
         Dim reviewPage = Request.QueryString("page")
         If reviewPage = "" Or Not reviewPage Like "*/review/*/#*" Then Exit Sub
         If AttribDoc.AddedUrls.Contains(reviewPage) Then Exit Sub
+        Diagnostics.Debug.Write("Starting " & reviewPage)
         Dim html As New HtmlDocument
         Dim htmlString = BrowserSim.GetPageHtml(reviewPage)
+        If htmlString = "" Then Exit Sub
         html.LoadHtml(htmlString)
+        Diagnostics.Debug.Write(" → downloaded")
         ' Find the site root
         Dim fullUri As New Uri(reviewPage)
         Dim siteRoot = "http://" & fullUri.Host
@@ -60,6 +64,7 @@ Partial Class Add
                 End If
             End If
         Next
+        Diagnostics.Debug.Write(" → parsed")
         ' Put together the log entry
         Dim urlParts = Split(reviewPage, "/")
         Dim reviewId = urlParts(urlParts.Length - 2) & " #" & urlParts.Last
@@ -118,5 +123,6 @@ Partial Class Add
         End If
         AttribDoc.AddLine(entry.ToString)
         AttribDoc.AddedUrls.Add(reviewPage)
+        Diagnostics.Debug.WriteLine(" → done.")
     End Sub
 End Class

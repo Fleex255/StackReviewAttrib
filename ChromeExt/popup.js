@@ -9,4 +9,5 @@ document.onreadystatechange = function() {
 	if (document.readyState != "complete") return; // Wait for the links to actually be there
 	document.getElementById("start").onclick = function() {SRA_XHR("Start.aspx");}
 	document.getElementById("stop").onclick = function() {SRA_XHR("Stop.aspx");}
+	console.log("Handlers installed");
 }

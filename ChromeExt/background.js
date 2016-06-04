@@ -5,5 +5,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		xhr.addEventListener("load", function() {});
 		xhr.open("GET", "http://localhost:56037/Add.aspx?page=" + tab.url)
 		xhr.send();
+		console.log("Added " + tab.url);
 	}
 })

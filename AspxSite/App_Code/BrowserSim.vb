@@ -20,7 +20,8 @@ Public Class BrowserSim
                                       End Sub)
         t.SetApartmentState(Threading.ApartmentState.STA)
         t.Start()
-        t.Join()
+        t.Join(10000)
+        If html = "" Then t.Abort()
         Return html
     End Function
 End Class
